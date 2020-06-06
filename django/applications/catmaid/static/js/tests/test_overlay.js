@@ -115,6 +115,8 @@ QUnit.test('Tracing overlay test', function( assert ) {
       "parent_id": 41
     };
 
+    // Let the fake server respond to the initial back-end HEAD request.
+    server.respondWith("HEAD", "/", [200, { "Content-Type": "text/html" }, '']);
     // Let the fake server reply to a deletion request with the prepared answer
     // above.
     server.respondWith("POST", "/1/treenode/delete",
