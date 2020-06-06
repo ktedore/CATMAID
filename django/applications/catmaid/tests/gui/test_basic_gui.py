@@ -116,15 +116,19 @@ class BasicUITest(StaticLiveServerTestCase):
                 capabilities = {
                     "platform": "Windows 10",
                     "browserName": "chrome",
-                    "version": "55.0",
+                    "version": "latest",
                     "captureHtml": True,
+                    "extendedDebugging": True,
                     "webdriverRemoteQuietExceptions": False,
                     "tunnel-identifier": os.environ["TRAVIS_JOB_NUMBER"],
                     "name": f"Job: {os.environ['TRAVIS_JOB_NUMBER']} Commit {os.environ['TRAVIS_COMMIT']}",
                     "build": os.environ["TRAVIS_BUILD_NUMBER"],
                     "tags": [os.environ["TRAVIS_PYTHON_VERSION"], "CI"]
                 }
-                hub_url = f"{username}:{access_key}@localhost:4445"
+                # This should be a HTTPS URL, but due to urllib3 being in use by
+                # selenium < v4 we can't get this to work with the Selenium
+                # server. More details here: https://travis-ci.community/t/8923
+                hub_url = f"{username}:{access_key}@ondemand.saucelabs.com"
                 self.selenium = webdriver.Remote(
                     desired_capabilities=capabilities,
                     command_executor=f"http://{hub_url}/wd/hub",
@@ -133,7 +137,7 @@ class BasicUITest(StaticLiveServerTestCase):
                 self.selenium = webdriver.Firefox()
 
             # Give browser a chance to load elements
-            self.selenium.implicitly_wait(10)
+            self.selenium.implicitly_wait(20)
 
     def tearDown(self):
         """Figure out if this test case was successful (based on
@@ -233,6 +237,10 @@ class BasicUITest(StaticLiveServerTestCase):
         # Check title
         self.assertTrue("CATMAID" in self.selenium.title)
 
+        # Wait for front-page to be loaded
+        content = WebDriverWait(self.selenium, 100).until(
+                EC.visibility_of_element_located((By.CSS_SELECTOR, '#data_view')))
+
         # Login
         account = WebDriverWait(self.selenium, 10).until(
                 EC.visibility_of_element_located((By.CSS_SELECTOR, '#account')))
@@ -246,7 +254,7 @@ class BasicUITest(StaticLiveServerTestCase):
         password.send_keys("test")
         login.send_keys(Keys.RETURN)
 
-        logout = WebDriverWait(self.selenium, 10).until(
+        logout = WebDriverWait(self.selenium, 100).until(
                 EC.visibility_of_element_located((By.CSS_SELECTOR, 'a#logout')))
         self.assertTrue(logout.is_displayed(), "Logout button is displayed")
         login = WebDriverWait(self.selenium, 10).until(
