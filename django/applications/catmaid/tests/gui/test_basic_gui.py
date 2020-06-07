@@ -119,12 +119,14 @@ class BasicUITest(StaticLiveServerTestCase):
                     "version": "55.0",
                     "captureHtml": True,
                     "webdriverRemoteQuietExceptions": False,
+                    "idle-timeout": "180",
                     "tunnel-identifier": os.environ["TRAVIS_JOB_NUMBER"],
                     "name": f"Job: {os.environ['TRAVIS_JOB_NUMBER']} Commit {os.environ['TRAVIS_COMMIT']}",
                     "build": os.environ["TRAVIS_BUILD_NUMBER"],
                     "tags": [os.environ["TRAVIS_PYTHON_VERSION"], "CI"]
                 }
-                hub_url = f"{username}:{access_key}@ondemand.saucelabs.com"
+                hub_url = f"{username}:{access_key}@saucelabs.com:4445"
+                #hub_url = f"{username}:{access_key}@ondemand.saucelabs.com"
                 self.selenium = webdriver.Remote(
                     desired_capabilities=capabilities,
                     command_executor=f"http://{hub_url}/wd/hub",
