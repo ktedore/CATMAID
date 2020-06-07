@@ -124,8 +124,8 @@ class BasicUITest(StaticLiveServerTestCase):
                     "build": os.environ["TRAVIS_BUILD_NUMBER"],
                     "tags": [os.environ["TRAVIS_PYTHON_VERSION"], "CI"]
                 }
-                #hub_url = f"{username}:{access_key}@127.0.0.1:4445"
-                hub_url = f"{username}:{access_key}@localhost:8888"
+                hub_url = f"{username}:{access_key}@localhost:4445"
+                #hub_url = f"{username}:{access_key}@localhost:8888"
                 #hub_url = f"{username}:{access_key}@saucelabs.com:4445"
                 #hub_url = f"{username}:{access_key}@ondemand.saucelabs.com"
                 self.selenium = webdriver.Remote(
@@ -136,7 +136,7 @@ class BasicUITest(StaticLiveServerTestCase):
                 self.selenium = webdriver.Firefox()
 
             # Give browser a chance to load elements
-            self.selenium.implicitly_wait(10)
+            self.selenium.implicitly_wait(20)
 
     def tearDown(self):
         """Figure out if this test case was successful (based on
