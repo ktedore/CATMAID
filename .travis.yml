@@ -36,8 +36,8 @@ before_script:
   # Set up and start postgres, create database, write config files
   - ./scripts/travis/setup_database.sh
   - ./scripts/travis/configure_catmaid.sh
-  - cat /home/travis/sauce-connect.log
 script:
+  - cat /home/travis/sauce-connect.log
   - flake8 --statistics --count django
     # see "scripts" in package.json
   - npm run lint:js
