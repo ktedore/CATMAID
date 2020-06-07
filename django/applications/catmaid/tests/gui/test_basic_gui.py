@@ -129,8 +129,8 @@ class BasicUITest(StaticLiveServerTestCase):
                 #hub_url = f"{username}:{access_key}@localhost:4445"
                 #hub_url = f"{username}:{access_key}@localhost:8888"
                 #hub_url = f"{username}:{access_key}@saucelabs.com:4445"
-                hub_url = f"{username}:{access_key}@ondemand.saucelabs.com:443"
-                #hub_url = f"{username}:{access_key}@ondemand.saucelabs.com"
+                #hub_url = f"{username}:{access_key}@ondemand.saucelabs.com:443"
+                hub_url = f"{username}:{access_key}@ondemand.saucelabs.com"
                 self.selenium = webdriver.Remote(
                     desired_capabilities=capabilities,
                     #command_executor="https://ondemand.saucelabs.com:4444/wd/hub"
