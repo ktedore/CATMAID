@@ -116,7 +116,7 @@ class BasicUITest(StaticLiveServerTestCase):
                 capabilities = {
                     "platform": "Windows 10",
                     "browserName": "chrome",
-                    "version": "75.0",
+                    "version": "55.0",
                     "captureHtml": True,
                     #"acceptInsecureCerts": True,
                     "webdriverRemoteQuietExceptions": False,
