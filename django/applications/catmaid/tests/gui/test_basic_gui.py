@@ -132,7 +132,8 @@ class BasicUITest(StaticLiveServerTestCase):
                 hub_url = f"{username}:{access_key}@ondemand.saucelabs.com:443"
                 self.selenium = webdriver.Remote(
                     desired_capabilities=capabilities,
-                    command_executor="https://ondemand.saucelabs.com:443/wd/hub"
+                    command_executor="https://ondemand.saucelabs.com:4444/wd/hub"
+                    #command_executor="https://ondemand.saucelabs.com:443/wd/hub"
                     #command_executor=f"https://{hub_url}/wd/hub",
                 )
             else:
