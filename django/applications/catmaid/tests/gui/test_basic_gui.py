@@ -124,9 +124,9 @@ class BasicUITest(StaticLiveServerTestCase):
                     "build": os.environ["TRAVIS_BUILD_NUMBER"],
                     "tags": [os.environ["TRAVIS_PYTHON_VERSION"], "CI"]
                 }
-                hub_url = f"{username}:{access_key}@127.0.0.1:4445"
+                #hub_url = f"{username}:{access_key}@127.0.0.1:4445"
                 #hub_url = f"{username}:{access_key}@saucelabs.com:4445"
-                #hub_url = f"{username}:{access_key}@ondemand.saucelabs.com"
+                hub_url = f"{username}:{access_key}@ondemand.saucelabs.com"
                 self.selenium = webdriver.Remote(
                     desired_capabilities=capabilities,
                     command_executor=f"http://{hub_url}/wd/hub",
