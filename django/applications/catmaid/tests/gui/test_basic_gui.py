@@ -123,8 +123,8 @@ class BasicUITest(StaticLiveServerTestCase):
                     "name": f"Job: {os.environ['TRAVIS_JOB_NUMBER']} Commit {os.environ['TRAVIS_COMMIT']}",
                     "build": os.environ["TRAVIS_BUILD_NUMBER"],
                     "tags": [os.environ["TRAVIS_PYTHON_VERSION"], "CI"],
-                    "username": username,
-                    "access_key": access_key,
+                    #"username": username,
+                    #"access_key": access_key,
                 }
                 #hub_url = f"{username}:{access_key}@localhost:4445"
                 #hub_url = f"{username}:{access_key}@localhost:8888"
@@ -133,8 +133,8 @@ class BasicUITest(StaticLiveServerTestCase):
                 self.selenium = webdriver.Remote(
                     desired_capabilities=capabilities,
                     #command_executor="https://ondemand.saucelabs.com:4444/wd/hub"
-                    command_executor="https://ondemand.saucelabs.com:443/wd/hub"
-                    #command_executor=f"https://{hub_url}/wd/hub",
+                    #command_executor="https://ondemand.saucelabs.com:443/wd/hub"
+                    command_executor=f"http://{hub_url}/wd/hub",
                 )
             else:
                 self.selenium = webdriver.Firefox()
