@@ -136,7 +136,7 @@ class BasicUITest(StaticLiveServerTestCase):
                     desired_capabilities=capabilities,
                     #command_executor="https://ondemand.saucelabs.com:4444/wd/hub"
                     #command_executor="https://ondemand.saucelabs.com:443/wd/hub"
-                    command_executor=f"https://{hub_url}/wd/hub",
+                    command_executor=f"http://{hub_url}/wd/hub",
                 )
             else:
                 self.selenium = webdriver.Firefox()
