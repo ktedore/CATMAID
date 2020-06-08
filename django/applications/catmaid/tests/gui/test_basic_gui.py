@@ -118,7 +118,7 @@ class BasicUITest(StaticLiveServerTestCase):
                     "browserName": "chrome",
                     "version": "55.0",
                     "captureHtml": True,
-                    #"acceptInsecureCerts": True,
+                    "acceptInsecureCerts": True,
                     "webdriverRemoteQuietExceptions": False,
                     "tunnel-identifier": os.environ["TRAVIS_JOB_NUMBER"],
                     "name": f"Job: {os.environ['TRAVIS_JOB_NUMBER']} Commit {os.environ['TRAVIS_COMMIT']}",
@@ -136,7 +136,7 @@ class BasicUITest(StaticLiveServerTestCase):
                     desired_capabilities=capabilities,
                     #command_executor="https://ondemand.saucelabs.com:4444/wd/hub"
                     #command_executor="https://ondemand.saucelabs.com:443/wd/hub"
-                    command_executor=f"http://{hub_url}/wd/hub",
+                    command_executor=f"https://{hub_url}/wd/hub",
                 )
             else:
                 self.selenium = webdriver.Firefox()
