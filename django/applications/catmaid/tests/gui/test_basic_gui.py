@@ -116,9 +116,8 @@ class BasicUITest(StaticLiveServerTestCase):
                 capabilities = {
                     "platform": "Windows 10",
                     "browserName": "chrome",
-                    "version": "55.0",
+                    "version": "latest",
                     "captureHtml": True,
-                    "acceptInsecureCerts": True,
                     "webdriverRemoteQuietExceptions": False,
                     "tunnel-identifier": os.environ["TRAVIS_JOB_NUMBER"],
                     "name": f"Job: {os.environ['TRAVIS_JOB_NUMBER']} Commit {os.environ['TRAVIS_COMMIT']}",
