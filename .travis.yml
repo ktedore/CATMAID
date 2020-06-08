@@ -27,6 +27,8 @@ before_install:
   - bash scripts/travis/install_python.sh
   - bash scripts/travis/install_gdal.sh
   - nvm install 11
+  - sudo cp scripts/travis/saucelabs.crt /usr/local/share/ca-certificates/saucelabs.crt
+  - sudo update-ca-certificates
 install:
   # Install requirements for running CATMAID and its unit tests
   - ./scripts/travis/install_requirements.sh
