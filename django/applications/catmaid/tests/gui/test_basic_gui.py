@@ -241,6 +241,10 @@ class BasicUITest(StaticLiveServerTestCase):
         # Check title
         self.assertTrue("CATMAID" in self.selenium.title)
 
+        # Wait for front-page to be loaded
+        content = WebDriverWait(self.selenium, 10).until(
+                EC.visibility_of_element_located((By.CSS_SELECTOR, '#data_view')))
+
         # Login
         account = WebDriverWait(self.selenium, 10).until(
                 EC.visibility_of_element_located((By.CSS_SELECTOR, '#account')))
