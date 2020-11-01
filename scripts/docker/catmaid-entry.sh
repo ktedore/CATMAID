@@ -40,7 +40,7 @@ CM_FORCE_CLIENT_SETTINGS=$(sanitize "${CM_FORCE_CLIENT_SETTINGS:-false}")
 CM_CLIENT_SETTINGS=${CM_CLIENT_SETTINGS:-""}
 CM_SERVER_SETTINGS=${CM_SERVER_SETTINGS:-""}
 TIMEZONE=`readlink /etc/localtime | sed "s/.*\/\(.*\)$/\1/"`
-PG_VERSION='11'
+PG_VERSION='12'
 
 # Check if the first argument begins with a dash. If so, prepend "platform" to
 # the list of arguments.

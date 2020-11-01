@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 LABEL maintainer="Andrew Champion <andrew.champion@gmail.com>, Tom Kazimiers <tom@voodoo-arts.net>"
 
 # For building the image, let dpkg/apt know that we install and configure
@@ -14,16 +14,16 @@ RUN apt-get update -y \
     && add-apt-repository ppa:deadsnakes/ppa \
     && add-apt-repository -y ppa:nginx/stable \
     && add-apt-repository -y ppa:ubuntugis/ppa \
-    && add-apt-repository "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main" \
+    && sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list' \
     && apt-get install -y wget ca-certificates \
-    && wget --quiet -O - https://postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
+    && wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - \
     && apt-get update -y \
-    && apt-get install -y python3.6 python3.6-dev git python-pip \
+    && apt-get install -y git \
     && apt-get install -y nginx supervisor \
     && rm -rf /var/lib/apt/lists/*
-ADD packagelist-ubuntu-16.04-apt.txt /home/
+ADD packagelist-ubuntu-18.04-apt.txt /home/
 RUN apt-get update -y  \
-    && xargs apt-get install -y < /home/packagelist-ubuntu-16.04-apt.txt \
+    && xargs apt-get install -y < /home/packagelist-ubuntu-18.04-apt.txt \
     && rm -rf /var/lib/apt/lists/*
 ADD django/requirements.txt /home/django/
 ENV WORKON_HOME /opt/virtualenvs
