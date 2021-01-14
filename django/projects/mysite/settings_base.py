@@ -52,6 +52,7 @@ USE_I18N = True
 
 MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     # For API tokens. Disable if not using HTTPS:
@@ -87,6 +88,7 @@ INSTALLED_APPS = (
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'channels',
+    'corsheaders',
 )
 
 LOGGING = {
@@ -452,3 +454,12 @@ INSTANCE_CLIENT_SETTINGS = None
 # should be reset every time CATMAID starts. Otherwise, they will only be
 # applied if they don't exist already.
 FORCE_CLIENT_SETTINGS = False
+
+
+CORS_ALLOWED_ORIGINS = [
+    "https://lweb724.srv.lu.se",
+    "http://localhost:8000",
+    "http://127.0.0.1:0000"
+]
+
+CORS_ALLOW_ALL_ORIGINS = True

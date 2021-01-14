@@ -24,3 +24,4 @@ virtualenvwrapper
 binutils
 libproj-dev
 gdal-bin
+django-cors-headers
